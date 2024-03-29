@@ -1,8 +1,9 @@
 ---
 const { href, platform, username, isStarter } = Astro.props;
+const isStarterBool = isStarter === "true"
 ---
 
-<a href={`${href}${username}`} target="_blank">{platform}</a>
+<a href={`${href}${username}`} class={isStarterBool ? "starter" : ""} target="_blank">{platform}</a>
 
 <style>
     /* set a:focus and a:focus:hover to get rid of link staying hover color after clicking and going to new site */
@@ -13,7 +14,6 @@ const { href, platform, username, isStarter } = Astro.props;
         font-size: 1.2rem;
         font-weight: bold;
         color: snow;
-        text-transform: uppercase;
     }
     a:hover, a:focus:hover {
         background-color: powderblue;
@@ -24,8 +24,7 @@ const { href, platform, username, isStarter } = Astro.props;
             padding: 15px 20px;
         }
     }
-    .starter:hover, .starter:focus {
-        background-color: inherit;
+    .starter, .starter:hover, .starter:focus, .starter:focus:hover {
         user-select: none;
         pointer-events: none;
     }

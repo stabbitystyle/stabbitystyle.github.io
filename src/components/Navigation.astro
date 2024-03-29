@@ -1,16 +1,16 @@
 ---
 // used for setting the active link
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1, -1); // remove the first "/"
+const currentPath = pathname.split("/")[1]; // remove the first and last "/"
 ---
 
 <div class="nav-links">
     <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
     <a class={currentPath === "about" ? "active" : ""} href="/about/">About</a>
     <div class="nav-drop"> <!-- Need to adjust the OR statement here if I add any additional dropdown items -->
-        <a class={(currentPath === 'blog') || (currentPath === 'tags') ? 'active nav-drop-parent' : 'nav-drop-parent'}>Blog</a>
+        <a class={(currentPath === 'posts') || (currentPath === 'tags') ? 'active nav-drop-parent' : 'nav-drop-parent'}>Blog</a>
         <div class="nav-drop-content">
-            <a class={currentPath === "blog" ? "active" : ""} href="/blog/">Blog</a>
+            <a class={currentPath === "posts" ? "active" : ""} href="/posts/">Posts</a>
             <a class={currentPath === "tags" ? "active" : ""} href="/tags/">Tags</a>
         </div>
     </div>
@@ -52,17 +52,16 @@ const currentPath = pathname.slice(1, -1); // remove the first "/"
     .nav-drop:hover .nav-drop-content {
         display: block;
     }
-
-@media screen {
-    .nav-links {
-        margin-left: 5em;
-        display: block;
-        position: static;
-        width: auto;
+    @media screen {
+        .nav-links {
+            margin-left: 5em;
+            display: block;
+            position: static;
+            width: auto;
+        }
+        .nav-links a, .nav-drop-content a {
+            display: inline-block;
+            padding: 15px 20px;
+        }
     }
-    .nav-links a, .nav-drop-content a {
-        display: inline-block;
-        padding: 15px 20px;
-    }
-}
 </style>
