@@ -1,9 +1,68 @@
 ---
+// used for setting the active link
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1, -1); // remove the first "/"
 ---
 
 <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <a href="/tags/">Tags</a>
+    <a class={currentPath === "" ? "active" : ""} href="/">Home</a>
+    <a class={currentPath === "about" ? "active" : ""} href="/about/">About</a>
+    <div class="nav-drop"> <!-- Need to adjust the OR statement here if I add any additional dropdown items -->
+        <a class={(currentPath === 'blog') || (currentPath === 'tags') ? 'active nav-drop-parent' : 'nav-drop-parent'}>Blog</a>
+        <div class="nav-drop-content">
+            <a class={currentPath === "blog" ? "active" : ""} href="/blog/">Blog</a>
+            <a class={currentPath === "tags" ? "active" : ""} href="/tags/">Tags</a>
+        </div>
+    </div>
 </div>
+
+<style>
+    .nav-links {
+        width: 100%;
+        overflow: hidden;
+        background-color: darkgrey;
+        font-size: 0; /* Removes space between 'a' elements */
+    }
+    .nav-links a, .nav-links .nav-drop, .nav-drop-content a {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: snow;
+        text-transform: uppercase;
+    }
+    .nav-drop-parent {
+        user-select: none; /* Prevents text highlight on dropdown hover */
+    }
+    .nav-links .active {
+        background-color: dodgerblue;
+    }
+    .nav-links a:hover, a:focus {
+        background-color: powderblue;
+    }
+    .nav-drop-content {
+        display: none;
+        position: absolute;
+        background-color: darkgrey;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        font-size: 0; /* Removes space between 'a' elements */
+    }
+    .nav-drop:hover .nav-drop-content {
+        display: block;
+    }
+
+@media screen {
+    .nav-links {
+        margin-left: 5em;
+        display: block;
+        position: static;
+        width: auto;
+    }
+    .nav-links a, .nav-drop-content a {
+        display: inline-block;
+        padding: 15px 20px;
+    }
+}
+</style>

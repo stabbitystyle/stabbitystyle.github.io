@@ -1,5 +1,32 @@
 ---
-const { platform, username } = Astro.props;
+const { href, platform, username, isStarter } = Astro.props;
 ---
 
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
+<a href={`${href}${username}`} target="_blank">{platform}</a>
+
+<style>
+    /* set a:focus and a:focus:hover to get rid of link staying hover color after clicking and going to new site */
+    a, a:focus {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: snow;
+        text-transform: uppercase;
+    }
+    a:hover, a:focus:hover {
+        background-color: powderblue;
+    }
+    @media screen {
+        a {
+            display: inline-block;
+            padding: 15px 20px;
+        }
+    }
+    .starter:hover, .starter:focus {
+        background-color: inherit;
+        user-select: none;
+        pointer-events: none;
+    }
+</style>
