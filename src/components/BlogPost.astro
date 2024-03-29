@@ -1,5 +1,36 @@
 ---
-const { title, url } = Astro.props
+const { url, title, subtitle, pubDate, author } = Astro.props
 ---
 
-<li><a href={url}>{title}</a></li>
+<li>
+    <a href={url}>
+        <span class="title">{title}</span><br>
+        <span class="subtitle">{subtitle}</span><br>
+        <span class="info">Posted on {pubDate.toString().slice(0,10)} by {author}</span>
+    </a>
+</li>
+
+<style>
+    li {
+        background: darkgrey;
+        padding: .5em 1em;
+    }
+    li + li { /* lets me just format the space between two list items */
+        margin: .2em 0
+    }
+    a {
+        color: snow;
+        text-decoration: none;
+        display: block;
+    }
+    .title {
+        font-size: 1.3em;
+    }
+    .subtitle {
+        font-size: 1.0em;
+        font-style: italic;
+    }
+    .info {
+        font-size: 0.9em;
+    }
+</style>

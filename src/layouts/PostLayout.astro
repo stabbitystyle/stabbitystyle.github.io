@@ -6,7 +6,6 @@ const { frontmatter } = Astro.props;
 <BaseLayout pageTitle={frontmatter.title}>
 	<p><em>{frontmatter.subtitle}</em></p>
 	<p>Written by: {frontmatter.author}  |  Published: {frontmatter.pubDate.toString().slice(0,10)}</p>
-	<img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
 	<slot />
 
 	<div class="tags">
@@ -20,12 +19,10 @@ const { frontmatter } = Astro.props;
 	a {
 		color: #00539F;
 	}
-
 	.tags {
 		display: flex;
 		flex-wrap: wrap;
 	}
-
 	.tag {
 		margin: 0.25em;
 		border: dotted 1px #a1a1a1;

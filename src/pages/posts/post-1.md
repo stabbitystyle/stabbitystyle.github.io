@@ -23,3 +23,7 @@ Welcome to my _new blog_ about learning Astro! Here, I will share my learning jo
 ## What's next
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+
+Here's a YouTube embed test:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TUToxS55gWA?si=jqQujjzv3zZlAQC6" title="YouTube video player" frameborder="0" allow="clipboard-write; encrypted-media;picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
