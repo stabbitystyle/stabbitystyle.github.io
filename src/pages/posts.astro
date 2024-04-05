@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const allPosts = await Astro.glob('../pages/posts/*.md');
+const pageTitle = "Posts";
+
+allPosts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)); // not even sure if this is working, supposed to sort posts by date
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <p>This is where my blog resides.</p>
+    <ul>
+        {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} subtitle={post.frontmatter.subtitle} pubDate={post.frontmatter.pubDate} author={post.frontmatter.author} />)}
+    </ul>
+</BaseLayout>
+
+<style>
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+</style>

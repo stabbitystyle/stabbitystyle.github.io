@@ -1,0 +1,33 @@
+---
+import Social from "./Social.astro"
+---
+
+<footer>
+    <div class="nav-links">
+        <Social username="" href="" platform="Find me here:" isStarter="true" />
+        <Social username="stabbitystyle" href="https://twitter.com/" platform="Twitter" />
+        <Social username="stabbitystyle.bsky.social" href="https://bsky.app/profile/" platform="BluSky" />
+        <Social username="stabbitystyle" href="https://github.com/" platform="GitHub" />
+    </div>
+</footer>
+
+<style>
+    .nav-links {
+        width: 100%;
+        overflow: hidden;
+        background-color: darkgrey;
+        font-size: 0; /* Removes space between 'a' elements */
+    }
+    @media screen {
+        .nav-links {
+            margin-left: 5em;
+            display: block;
+            position: static;
+            width: auto;
+        }
+        .nav-links a {
+            display: inline-block;
+            padding: 15px 20px;
+        }
+    }
+</style>
