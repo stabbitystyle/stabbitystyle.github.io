@@ -12,8 +12,14 @@ enum Color {
     Silver = 7
 }
 
+// pattern enum for use in random pattern selection
+enum Pattern {
+
+}
+
 // gets the canvas based on an 'id', throws an error if a canvas with that id isn't found
-const getCanvasElementById = (id: string): HTMLCanvasElement => {
+// taken from stackoverflow
+function getCanvasElementById(id: string): HTMLCanvasElement {
     const canvas = document.getElementById(id);
 
     if (!(canvas instanceof HTMLCanvasElement)) {
@@ -24,7 +30,8 @@ const getCanvasElementById = (id: string): HTMLCanvasElement => {
 }
 
 // gets the 2D rendering context of the canvas, throws an error if no browser support
-const getCanvasRenderingContext2D = (canvas: HTMLCanvasElement): CanvasRenderingContext2D => {
+// taken from stackoverflow
+function getCanvasRenderingContext2D(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
     const context = canvas.getContext('2d');
 
     if (context === null) {
@@ -44,10 +51,46 @@ function getRandomInt(max: number): number {
     return Math.floor(Math.random() * max);
 }
 
-function setColor(ctx: CanvasRenderingContext2D, horizontalPixel: number, verticalPixel: number, color: Color)
-{
+
+function drawColorAtLocation(ctx: CanvasRenderingContext2D, horizontalPixel: number, verticalPixel: number, color: Color) {
+    // error checks for pixel and color, should these be separate functions?
+    if (color < 0 || color > 7) {
+        throw new Error(`Color is not within 0 to 7`);
+    } else if (horizontalPixel < 0 || horizontalPixel > window.innerWidth) {
+        throw new Error(`Horizontal pixel is not within 0 to "${window.innerWidth}"`);
+    } else if (verticalPixel < 0 || verticalPixel > window.innerHeight) {
+        throw new Error(`Vertical pixel is not within 0 to "${window.innerHeight}"`);
+    }
+
     ctx.fillStyle = Color[color];
     ctx.fillRect(horizontalPixel, verticalPixel, 1, 1);
+}
+
+function isHorizontalPixelValid(horizontalPixel: number): boolean {
+    var isValid = true;
+
+    if (horizontalPixel < 0 || horizontalPixel > window.innerWidth) {
+        isValid = false;
+    }
+    return isValid;
+}
+
+function isVerticalPixelValid(verticalPixel: number): boolean {
+    var isValid = true;
+
+    if (verticalPixel < 0 || verticalPixel > window.innerHeight) {
+        isValid = false;
+    }
+    return isValid;
+}
+
+function isColorValid(color: Color): boolean {
+    var isValid = true;
+    
+    if (color < 0 || color > 7) {
+        isValid = false;
+    }
+    return isValid;
 }
 
 function draw() {
