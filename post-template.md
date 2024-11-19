@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: 'Tile of Post'
 subtitle: 'Subtitle of post goes here, can be a bit descriptive'
 author: 'Stabbity Style'

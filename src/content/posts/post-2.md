@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: 'My Second Post'
 subtitle: 'This is the second post, for testing.'
 author: 'Stabbity Style'

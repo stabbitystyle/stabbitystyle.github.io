@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: 'My First Post'
 subtitle: 'This is the first post of my new Astro/GitHub Pages blog.'
 author: 'Stabbity Style'
