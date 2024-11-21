@@ -6,13 +6,13 @@ const { url, title, subtitle, pubDate, author } = Astro.props
     <a href={url}>
         <span class="title">{title}</span><br>
         <span class="subtitle">{subtitle}</span><br>
-        <span class="info">Posted on {pubDate.toString().slice(0,10)} by {author}</span>
+        <span class="info">Posted on {pubDate.toLocaleDateString("en-us", {month: "long", day: "numeric", year: "numeric"})} by {author}</span>
     </a>
 </li>
 
 <style>
     li {
-        background: darkgrey;
+        background: dimgray;
         padding: 0.5em 1em;
     }
     li + li { /* lets me just format the space between two list items */
