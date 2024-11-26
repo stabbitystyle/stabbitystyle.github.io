@@ -11,14 +11,7 @@ allPosts.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
 
 <BaseLayout pageTitle={pageTitle}>
     <p>This is where my blog resides.</p>
-    <ul>
+    <ul class="postList">
         {allPosts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} subtitle={post.data.subtitle} pubDate={post.data.pubDate} author={post.data.author} />)}
     </ul>
 </BaseLayout>
-
-<style>
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-</style>

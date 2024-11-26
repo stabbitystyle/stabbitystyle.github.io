@@ -4,7 +4,7 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-	<p><em>{frontmatter.subtitle}</em></p>
+	<h2>{frontmatter.subtitle}</h2>
 	<p>Written by: {frontmatter.author}  |  Published: {frontmatter.pubDate.toLocaleDateString("en-us", {month: "long", day: "numeric", year: "numeric"})}</p>
 	<hr>
 	<slot />
@@ -15,16 +15,3 @@ const { frontmatter } = Astro.props;
 		))}
 	</div>
 </BaseLayout>
-
-<style>
-	a {
-		color: snow;
-		text-decoration: none;
-        display: block;
-	}
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		padding: 0em 1em 1em 0em;
-	}
-</style>
